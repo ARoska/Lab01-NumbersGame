@@ -32,7 +32,7 @@ namespace NumbersGame
 
                 int sum = GetSum(numbersArray);
                 int product = GetProduct(numbersArray, sum);
-                int quotient = GetQuotient(sum);
+                decimal quotient = GetQuotient(sum);
             }
             catch (FormatException)
             {
@@ -97,9 +97,25 @@ namespace NumbersGame
             return product;
         }
 
-        static void GetQuotient()
+        static decimal GetQuotient(int product)
         {
+            decimal decimalProduct = Convert.ToDecimal(product);
+            Console.WriteLine($"Please input a number to divide {product} by:");
+            string divisorInput = Console.ReadLine();
+            decimal divisor = Convert.ToInt32(divisorInput);
+            decimal quotient = 0;
 
+            try
+            {
+                quotient = Decimal.Divide(decimalProduct, divisor);
+            }
+            catch (DivideByZeroException e)
+            {
+                Console.WriteLine(e);
+                Console.WriteLine($"Cannot divide by {divisor}");
+            }
+
+            return quotient;
         }
     }
 }
