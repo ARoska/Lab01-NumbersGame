@@ -61,7 +61,19 @@ namespace NumbersGame
 
         static int GetSum(int[] numbersArray)
         {
+            int sum = 0;
 
+            foreach(int number in numbersArray)
+            {
+                sum += number;
+            }
+
+            if(sum < 20)
+            {
+                throw new System.ArgumentException($"Value of {sum} to low.");
+            }
+
+            return sum;
         }
 
         static void GetProduct()
