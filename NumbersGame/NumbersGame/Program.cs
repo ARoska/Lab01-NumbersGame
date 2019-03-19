@@ -15,11 +15,17 @@ namespace NumbersGame
                 Console.WriteLine("Something went wrong :(");
                 Console.WriteLine($"Error message: {e}");
             }
+            finally
+            {
+                Console.WriteLine("Program is complete.");
+                Console.ReadKey();
+            }
 
         }
 
         static void StartSequence()
         {
+            Console.WriteLine("Welcome to my Numbers Game!");
             Console.WriteLine("Please input a number greater than zero(0)");
             string arrayInput = Console.ReadLine();
 
@@ -32,7 +38,14 @@ namespace NumbersGame
 
                 int sum = GetSum(numbersArray);
                 int product = GetProduct(numbersArray, sum);
-                decimal quotient = GetQuotient(sum);
+                decimal quotient = GetQuotient(product);
+
+                Console.WriteLine($"Your Array size is: {numbersArray.Length}");
+                Console.Write("The numbers in your Array are: ");
+                Console.WriteLine($"{string.Join(", ", numbersArray)}");
+                Console.WriteLine($"The sum of your Array is {sum}");
+                Console.WriteLine($"{sum} * {product / sum} = {product}");
+                Console.WriteLine($"{product} / {product / quotient} = {quotient}");
             }
             catch (FormatException)
             {
@@ -44,13 +57,14 @@ namespace NumbersGame
 
                 throw;
             }
+
         }
 
         static int[] Populate(int[] numbersArray)
         {
             for (int i = 0; i < numbersArray.Length; i++)
             {
-                Console.WriteLine($"Please enter number: {i} of {numbersArray.Length}");
+                Console.WriteLine($"Please enter number: {i + 1} of {numbersArray.Length}");
                 string numberInput = Console.ReadLine();
 
                 numbersArray[i] = Convert.ToInt32(numberInput);
@@ -85,7 +99,7 @@ namespace NumbersGame
 
             try
             {
-                product = sum * numbersArray[randomNumber];
+                product = sum * numbersArray[randomNumber - 1];
 
             }
             catch (IndexOutOfRangeException e)
