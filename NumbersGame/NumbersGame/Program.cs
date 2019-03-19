@@ -39,14 +39,27 @@ namespace NumbersGame
 
                 throw;
             }
+            catch (OverflowException)
+            {
+
+                throw;
+            }
         }
 
-        static void Populate()
+        static int[] Populate(int[] numbersArray)
         {
+            for (int i = 0; i < numbersArray.Length; i++)
+            {
+                Console.WriteLine($"Please enter number: {i} of {numbersArray.Length}");
+                string numberInput = Console.ReadLine();
 
+                numbersArray[i] = Convert.ToInt32(numberInput);
+            }
+
+            return numbersArray;
         }
 
-        static void GetSum()
+        static int GetSum(int[] numbersArray)
         {
 
         }
