@@ -76,9 +76,25 @@ namespace NumbersGame
             return sum;
         }
 
-        static void GetProduct()
+        static int GetProduct(int[] numbersArray, int sum)
         {
+            Console.WriteLine($"Please input a number between 1 and {numbersArray.Length}:");
+            string randomNumberInput = Console.ReadLine();
+            int randomNumber = Convert.ToInt32(randomNumberInput);
+            int product;
 
+            try
+            {
+                product = sum * numbersArray[randomNumber];
+
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            return product;
         }
 
         static void GetQuotient()
